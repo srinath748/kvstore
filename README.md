@@ -52,12 +52,12 @@ cd kvstore
         ├─ README.md        # Project documentation
 
    ```
-##Testing with Gradebot:
-Run automated tests using Gradebot:
-    ```bash
-    .\gradebot.exe project-1 --dir "." --run "python main.py"
-   ```
-The grader checks:
+## Testing with Gradebot:
+    Run automated tests using Gradebot:
+        ```bash
+        .\gradebot.exe project-1 --dir "." --run "python main.py"
+      ```
+    The grader checks:
 
 - Creation of data.db
 - SET and GET functionality
@@ -66,7 +66,7 @@ The grader checks:
 - Persistence after restart
 - Code quality and style
 
-##Gradebot Result
+## Gradebot Result
 ![Gradebot Screenshot](Screenshot (593).png)
 ![Gradebot Screenshot](Screenshot (594).png)
 
