@@ -39,8 +39,11 @@ class KeyValueStore:
 
     def set(self, key: str, value: str) -> None:
         """Append a SET command to disk and update memory."""
-        with open(self.db_file, "a") as f:
-            f.write(f"SET {key} {value}\n")
+        try:
+            with open(self.db_file, "a") as f:
+                f.write(f"SET {key} {value}\n")
+        except IOError as e:
+            print(f"Error writing to DB: {e}", file=sys.stderr)
         self._update_in_memory(key, value)
 
     def get(self, key: str) -> str | None:
@@ -65,12 +68,17 @@ def main():
         if op == "SET" and len(parts) == 3:
             key, value = parts[1], parts[2]
             kv_store.set(key, value)
+
         elif op == "GET" and len(parts) == 2:
             key = parts[1]
             value = kv_store.get(key)
-            print(value if value is not None else "NULL", flush=True)
+            # Only print if key exists
+            if value is not None:
+                print(value, flush=True)
+
         elif op == "EXIT":
             break
+
         else:
             print(f"Invalid command: {cmd}", flush=True)
 
