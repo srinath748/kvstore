@@ -1,0 +1,5 @@
+# .gitignore
+gradebot.exe
+data.db
+*.rar
+__pycache__/
